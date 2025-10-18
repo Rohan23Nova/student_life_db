@@ -3,6 +3,7 @@ const cors = require('cors');
 require('dotenv').config();
 const authRoutes = require('./auth');
 const academicsRoutes = require('./academics');
+const financeRoutes = require('./finance');
 
 const app = express();
 
@@ -11,6 +12,8 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/academics', academicsRoutes);
+app.use('/api/finance', financeRoutes);
+
 
 app.get('/', (req, res) => {
   res.json({ 
