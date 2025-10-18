@@ -4,6 +4,7 @@ require('dotenv').config();
 const authRoutes = require('./auth');
 const academicsRoutes = require('./academics');
 const financeRoutes = require('./finance');
+const scheduleRoutes = require('./schedule');
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/academics', academicsRoutes);
 app.use('/api/finance', financeRoutes);
+app.use('/api/schedule', scheduleRoutes);
 
 
 app.get('/', (req, res) => {
