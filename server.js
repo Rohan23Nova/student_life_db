@@ -5,6 +5,7 @@ const authRoutes = require('./auth');
 const academicsRoutes = require('./academics');
 const financeRoutes = require('./finance');
 const scheduleRoutes = require('./schedule');
+const socialRoutes = require('./social');
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/academics', academicsRoutes);
 app.use('/api/finance', financeRoutes);
 app.use('/api/schedule', scheduleRoutes);
+app.use('/api/social', socialRoutes);
 
 
 app.get('/', (req, res) => {
