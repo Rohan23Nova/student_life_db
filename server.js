@@ -6,6 +6,8 @@ const academicsRoutes = require('./academics');
 const financeRoutes = require('./finance');
 const scheduleRoutes = require('./schedule');
 const socialRoutes = require('./social');
+const messagingRoutes = require('./messaging');
+const hostelRoutes = require('./hostel');
 
 const app = express();
 
@@ -17,6 +19,8 @@ app.use('/api/academics', academicsRoutes);
 app.use('/api/finance', financeRoutes);
 app.use('/api/schedule', scheduleRoutes);
 app.use('/api/social', socialRoutes);
+app.use('/api/messaging', messagingRoutes);
+app.use('/api/hostel', hostelRoutes);
 
 
 app.get('/', (req, res) => {
