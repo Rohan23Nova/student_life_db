@@ -8,6 +8,8 @@ const scheduleRoutes = require('./schedule');
 const socialRoutes = require('./social');
 const messagingRoutes = require('./messaging');
 const hostelRoutes = require('./hostel');
+const healthRoutes = require('./health');
+const dashboardRoutes = require('./dashboard');
 
 const app = express();
 
@@ -21,6 +23,8 @@ app.use('/api/schedule', scheduleRoutes);
 app.use('/api/social', socialRoutes);
 app.use('/api/messaging', messagingRoutes);
 app.use('/api/hostel', hostelRoutes);
+app.use('/api/health', healthRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 
 app.get('/', (req, res) => {
