@@ -1,0 +1,116 @@
+.messages-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.messages-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.conversations-list {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.conversation-item {
+  padding: 1rem;
+  border-bottom: 1px solid #ecf0f1;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: relative;
+}
+
+.conversation-item:hover {
+  background-color: #f8f9fa;
+}
+
+.conversation-item p {
+  margin: 0.25rem 0;
+  color: #34495e;
+}
+
+.conversation-item .college {
+  font-size: 0.85rem;
+  color: #95a5a6;
+}
+
+.unread {
+  background-color: #3498db;
+  color: white;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.chat-box {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.messages-list {
+  flex: 1;
+  overflow-y: auto;
+  margin: 1rem 0;
+  max-height: 300px;
+}
+
+.message {
+  background: #f0f0f0;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  border-radius: 4px;
+}
+
+.message p {
+  margin: 0;
+  color: #34495e;
+}
+
+.message small {
+  color: #95a5a6;
+  font-size: 0.75rem;
+}
+
+.message-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.message-form input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.message-form button {
+  padding: 0.75rem 1.5rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.message-form button:hover {
+  background-color: #2980b9;
+}

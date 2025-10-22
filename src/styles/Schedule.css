@@ -1,0 +1,62 @@
+.schedule-container {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.event-item {
+  display: flex;
+  gap: 1.5rem;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-left: 4px solid #3498db;
+  transition: transform 0.2s;
+}
+
+.event-item:hover {
+  transform: translateX(4px);
+}
+
+.event-item.assignment {
+  border-left-color: #27ae60;
+}
+
+.event-item.exam {
+  border-left-color: #e74c3c;
+}
+
+.event-item.deadline {
+  border-left-color: #f39c12;
+}
+
+.event-icon {
+  font-size: 2rem;
+  min-width: 50px;
+  text-align: center;
+}
+
+.event-details h3 {
+  margin: 0;
+  color: #2c3e50;
+}
+
+.event-details .course {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  margin: 0.25rem 0;
+}
+
+.event-details .date {
+  color: #3498db;
+  font-weight: bold;
+  margin: 0.5rem 0 0 0;
+}
