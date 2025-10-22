@@ -4,6 +4,9 @@
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--gray-200);
   transition: all var(--transition-base);
+  height: 100%; 
+  display: flex; 
+  flex-direction: column;
 }
 
 .card-hoverable:hover {
