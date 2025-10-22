@@ -5,10 +5,23 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f5f6fa;
+  font-family: var(--font-primary);
+  background-color: var(--gray-50);
 }
 
 #root {
   min-height: 100vh;
+}
+
+.app-content {
+  min-height: calc(100vh - 64px);
+  padding: var(--space-6);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .app-content {
+    padding: var(--space-4);
+  }
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import './styles/designSystem.css';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import './styles/designSystem.css';
 import './index.css'; // your existing styles
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { authAPI } from '../services/api';
+import Button from './ui/Button';
+import Input from './ui/Input';
+import Alert from './ui/Alert';
 import '../styles/Auth.css';
 
 function Signup() {
@@ -15,6 +18,12 @@ function Signup() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  React.useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/dashboard');
+    }
+  }, [navigate]);
 
   const handleChange = (e) => {
     setFormData({
@@ -32,9 +41,17 @@ function Signup() {
       const response = await authAPI.signup(formData);
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('userId', response.data.user_id);
+      
+      // Save user data for navbar
+      localStorage.setItem('user', JSON.stringify({
+        name: `${formData.first_name} ${formData.last_name}`,
+        email: formData.email,
+        student_id: response.data.user_id
+      }));
+      
       navigate('/dashboard');
     } catch (err) {
-      setError(err.response?.data?.error || 'Signup failed');
+      setError(err.response?.data?.error || 'Signup failed. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -42,71 +59,105 @@ function Signup() {
 
   return (
     <div className="auth-container">
-      <div className="auth-box">
-        <h1>Student Life Management System</h1>
-        <h2>Create Account</h2>
-        
-        {error && <div className="error-message">{error}</div>}
-        
-        <form onSubmit={handleSubmit}>
-          <input
+      <div className="auth-box auth-box-large">
+        <div className="auth-header">
+          <div className="auth-logo">🎓</div>
+          <h1 className="auth-title">Join StudentLife</h1>
+          <p className="auth-subtitle">Create your account and start managing your student life better.</p>
+        </div>
+
+        {error && (
+          <Alert variant="error" onClose={() => setError('')}>
+            {error}
+          </Alert>
+        )}
+
+        <form onSubmit={handleSubmit} className="auth-form">
+          <div className="form-row">
+            <Input
+              label="First Name"
+              type="text"
+              name="first_name"
+              placeholder="John"
+              value={formData.first_name}
+              onChange={handleChange}
+              required
+              icon={<span>👤</span>}
+            />
+            <Input
+              label="Last Name"
+              type="text"
+              name="last_name"
+              placeholder="Doe"
+              value={formData.last_name}
+              onChange={handleChange}
+              required
+              icon={<span>👤</span>}
+            />
+          </div>
+
+          <Input
+            label="Email Address"
             type="email"
             name="email"
-            placeholder="Email"
+            placeholder="you@university.edu"
             value={formData.email}
             onChange={handleChange}
             required
+            icon={<span>📧</span>}
           />
-          
-          <input
+
+          <Input
+            label="Password"
             type="password"
             name="password"
-            placeholder="Password"
+            placeholder="Create a strong password"
             value={formData.password}
             onChange={handleChange}
             required
+            helperText="Must be at least 6 characters"
+            icon={<span>🔒</span>}
           />
-          
-          <input
-            type="text"
-            name="first_name"
-            placeholder="First Name"
-            value={formData.first_name}
-            onChange={handleChange}
-            required
-          />
-          
-          <input
-            type="text"
-            name="last_name"
-            placeholder="Last Name"
-            value={formData.last_name}
-            onChange={handleChange}
-            required
-          />
-          
-          <input
+
+          <Input
+            label="College/University"
             type="text"
             name="college"
-            placeholder="College Name"
+            placeholder="Your College Name"
             value={formData.college}
             onChange={handleChange}
+            icon={<span>🏫</span>}
           />
-          
-          <input
+
+          <Input
+            label="Enrollment Year"
             type="number"
             name="enrollment_year"
-            placeholder="Enrollment Year"
+            placeholder="2024"
             value={formData.enrollment_year}
             onChange={handleChange}
+            icon={<span>📅</span>}
           />
-          
-          <button type="submit" disabled={loading}>
-            {loading ? 'Creating Account...' : 'Signup'}
-          </button>
+
+          <Button 
+            type="submit" 
+            variant="primary" 
+            size="lg" 
+            fullWidth 
+            isLoading={loading}
+          >
+            {loading ? 'Creating Account...' : 'Create Account'}
+          </Button>
         </form>
-        
-        <p>Already have an account? <a href="/login">Login here</a></p>
+
+        <div className="auth-footer">
+          <p className="auth-footer-text">
+            Already have an account?{' '}
+            <Link to="/login" className="auth-link">
+              Login here
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );
