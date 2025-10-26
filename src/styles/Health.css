@@ -1,106 +1,528 @@
 .health-container {
-  padding: 2rem;
-  max-width: 1000px;
+  padding: var(--space-6);
+  max-width: 1400px;
   margin: 0 auto;
+  animation: fadeIn 0.4s ease-out;
 }
 
-.tabs {
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Header */
+.health-header {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  border-bottom: 2px solid #ecf0f1;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-8);
 }
 
-.tabs button {
-  padding: 0.75rem 1.5rem;
+.health-title {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: var(--space-2);
+  font-family: var(--font-heading);
+}
+
+.health-subtitle {
+  font-size: var(--text-lg);
+  color: var(--gray-600);
+}
+
+/* Stats */
+.health-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.health-stat-card {
+  padding: var(--space-5) !important;
+  border-left: 4px solid var(--primary-600);
+  transition: all var(--transition-base);
+}
+
+.health-stat-card.active-gym {
+  border-left-color: var(--success);
+}
+
+.health-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.health-stat-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.health-stat-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  font-family: var(--font-heading);
+  line-height: 1;
+}
+
+.health-stat-label {
+  font-size: var(--text-sm);
+  color: var(--gray-600);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+/* Tabs */
+.health-tabs {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+  border-bottom: 2px solid var(--gray-200);
+}
+
+.health-tab {
+  padding: var(--space-4) var(--space-6);
   background: none;
   border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  color: #7f8c8d;
   border-bottom: 3px solid transparent;
-  transition: all 0.3s;
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--gray-600);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-bottom: -2px;
 }
 
-.tabs button.active {
-  color: #3498db;
-  border-bottom-color: #3498db;
+.health-tab:hover {
+  color: var(--primary-600);
+  background: var(--primary-50);
 }
 
-.records-list,
+.health-tab.active {
+  color: var(--primary-600);
+  border-bottom-color: var(--primary-600);
+}
+
+/* Content */
+.health-content {
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Appointments */
 .appointments-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--space-4);
 }
 
-.record-card,
 .appointment-card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  border-left: 4px solid #9b59b6;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
 }
 
-.record-card h3,
-.appointment-card h3 {
-  margin: 0 0 0.5rem 0;
-  color: #2c3e50;
+.appointment-date-badge {
+  width: 64px;
+  min-width: 64px;
+  height: 64px;
+  background: var(--primary-600);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
 }
 
-.record-card p,
-.appointment-card p {
-  margin: 0.25rem 0;
-  color: #34495e;
+.appointment-month {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1;
 }
 
-.date {
-  color: #7f8c8d;
-  font-size: 0.9rem;
-  margin-top: 0.5rem;
+.appointment-day {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-top: 2px;
+  font-family: var(--font-heading);
 }
 
-.status {
-  font-weight: bold;
-  color: #f39c12;
-  margin-top: 0.5rem;
+.appointment-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
 }
 
-.gym-card {
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  max-width: 400px;
-  text-align: center;
+.appointment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
-.gym-card h3 {
-  color: #2c3e50;
-  margin-bottom: 1.5rem;
+.appointment-doctor {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--gray-900);
+  margin: 0 0 4px 0;
 }
 
-.gym-card p {
-  margin: 1rem 0;
-  color: #34495e;
-  font-size: 1.1rem;
+.appointment-specialty {
+  font-size: var(--text-sm);
+  color: var(--gray-600);
+  margin: 0;
 }
 
-.gym-card strong {
-  color: #3498db;
+.appointment-status-badge {
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.gym-card .status {
-  font-size: 1.2rem;
-  margin-top: 1.5rem;
+.appointment-status-badge.confirmed {
+  background: #d1fae5;
+  color: #065f46;
 }
 
-.gym-card .status.active {
-  color: #27ae60;
+.appointment-status-badge.pending {
+  background: #fed7aa;
+  color: #92400e;
 }
 
-.gym-card .status.inactive {
-  color: #e74c3c;
+.appointment-info {
+  display: flex;
+  gap: var(--space-6);
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.info-label {
+  font-size: 0.625rem;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.info-value {
+  font-size: var(--text-sm);
+  color: var(--gray-900);
+  font-weight: 600;
+}
+
+.appointment-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+/* Medical Records */
+.records-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.record-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.record-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.record-condition {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--gray-900);
+  margin: 0 0 4px 0;
+}
+
+.record-doctor {
+  font-size: var(--text-sm);
+  color: var(--gray-600);
+  margin: 0;
+}
+
+.record-type-badge {
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: var(--primary-100);
+  color: var(--primary-700);
+}
+
+.record-details {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--gray-50);
+  border-radius: var(--radius-lg);
+}
+
+.record-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.section-label {
+  font-size: 0.625rem;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.section-value {
+  font-size: var(--text-sm);
+  color: var(--gray-900);
+  margin: 0;
+}
+
+.record-actions {
+  display: flex;
+  gap: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--gray-200);
+}
+
+/* Gym Membership */
+.gym-membership-card {
+  margin-bottom: var(--space-6);
+}
+
+.gym-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.gym-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--success), #34d399);
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gym-icon-inner {
+  font-size: var(--text-2xl);
+  font-weight: 900;
+  color: white;
+  font-family: var(--font-heading);
+  letter-spacing: 2px;
+}
+
+.gym-status-section {
+  flex: 1;
+}
+
+.gym-title {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--gray-900);
+  margin: 0 0 var(--space-2) 0;
+  font-family: var(--font-heading);
+}
+
+.gym-status-badge {
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.gym-status-badge.active {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.gym-status-badge.inactive {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.gym-details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.gym-detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  background: var(--gray-50);
+  border-radius: var(--radius-lg);
+}
+
+.gym-detail-label {
+  font-size: 0.625rem;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.gym-detail-value {
+  font-size: var(--text-lg);
+  color: var(--gray-900);
+  font-weight: 700;
+  font-family: var(--font-heading);
+}
+
+.gym-progress {
+  margin-bottom: var(--space-6);
+}
+
+.progress-bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-sm);
+  color: var(--gray-600);
+  margin-bottom: var(--space-2);
+  font-weight: 500;
+}
+
+.gym-progress-bar {
+  height: 12px;
+  background: var(--gray-200);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.gym-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--success), #34d399);
+  border-radius: var(--radius-full);
+  transition: width 0.6s ease;
+}
+
+.gym-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* Gym Features */
+.gym-features-card {
+  margin-top: var(--space-6);
+}
+
+.gym-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-4);
+}
+
+.gym-feature {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--gray-50);
+  border-radius: var(--radius-lg);
+}
+
+.feature-icon {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  background: var(--success);
+  color: white;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: var(--text-sm);
+}
+
+.feature-text h4 {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--gray-900);
+  margin: 0 0 4px 0;
+}
+
+.feature-text p {
+  font-size: var(--text-sm);
+  color: var(--gray-600);
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .health-container {
+    padding: var(--space-4);
+  }
+
+  .health-header {
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .appointment-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .appointment-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .record-details {
+    grid-template-columns: 1fr;
+  }
+
+  .record-actions {
+    flex-direction: column;
+  }
+
+  .gym-details {
+    grid-template-columns: 1fr;
+  }
+
+  .gym-features {
+    grid-template-columns: 1fr;
+  }
 }

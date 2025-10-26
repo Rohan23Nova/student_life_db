@@ -1,115 +1,341 @@
 .hostel-container {
-  padding: 2rem;
-  max-width: 1200px;
+  padding: var(--space-6);
+  max-width: 1400px;
   margin: 0 auto;
+  animation: fadeIn 0.4s ease-out;
 }
 
-.tabs {
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Header */
+.hostel-header {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  border-bottom: 2px solid #ecf0f1;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-8);
 }
 
-.tabs button {
-  padding: 0.75rem 1.5rem;
+.hostel-title {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: var(--space-2);
+  font-family: var(--font-heading);
+}
+
+.hostel-subtitle {
+  font-size: var(--text-lg);
+  color: var(--gray-600);
+}
+
+/* Stats */
+.hostel-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.hostel-stat-card {
+  padding: var(--space-5) !important;
+  border-left: 4px solid var(--gray-300);
+  transition: all var(--transition-base);
+}
+
+.hostel-stat-card.available { border-left-color: var(--success); }
+.hostel-stat-card.booked { border-left-color: var(--primary-600); }
+.hostel-stat-card.complaints { border-left-color: var(--error); }
+
+.hostel-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.hostel-stat-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.hostel-stat-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  font-family: var(--font-heading);
+  line-height: 1;
+}
+
+.hostel-stat-label {
+  font-size: var(--text-sm);
+  color: var(--gray-600);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+/* Tabs */
+.hostel-tabs {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+  border-bottom: 2px solid var(--gray-200);
+}
+
+.hostel-tab {
+  padding: var(--space-4) var(--space-6);
   background: none;
   border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  color: #7f8c8d;
   border-bottom: 3px solid transparent;
-  transition: all 0.3s;
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--gray-600);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-bottom: -2px;
 }
 
-.tabs button.active {
-  color: #3498db;
-  border-bottom-color: #3498db;
+.hostel-tab:hover {
+  color: var(--primary-600);
+  background: var(--primary-50);
 }
 
+.hostel-tab.active {
+  color: var(--primary-600);
+  border-bottom-color: var(--primary-600);
+}
+
+/* Content */
+.hostel-content {
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Rooms Grid */
 .rooms-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-6);
 }
 
 .room-card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
 }
 
-.room-card.available {
-  border: 2px solid #27ae60;
+.room-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.room-card.booked {
-  border: 2px solid #e74c3c;
-  opacity: 0.7;
+.room-number {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--gray-900);
+  font-family: var(--font-heading);
 }
 
-.room-card h3 {
-  color: #2c3e50;
-  margin-bottom: 1rem;
-}
-
-.room-card .status {
-  color: #7f8c8d;
-  margin: 0.5rem 0;
+.room-status-badge {
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.625rem;
+  font-weight: 700;
   text-transform: uppercase;
-  font-size: 0.85rem;
+  letter-spacing: 0.5px;
 }
 
-.book-btn {
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background-color: #27ae60;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.room-status-badge.available {
+  background: #d1fae5;
+  color: #065f46;
 }
 
-.book-btn:hover {
-  background-color: #229954;
+.room-status-badge.booked {
+  background: var(--gray-200);
+  color: var(--gray-700);
 }
 
+.room-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background: var(--gray-50);
+  border-radius: var(--radius-lg);
+}
+
+.room-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detail-label {
+  font-size: var(--text-sm);
+  color: var(--gray-600);
+  font-weight: 500;
+}
+
+.detail-value {
+  font-size: var(--text-sm);
+  color: var(--gray-900);
+  font-weight: 600;
+}
+
+/* Complaints List */
 .complaints-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--space-4);
 }
 
 .complaint-card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  border-left: 4px solid #f39c12;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
 }
 
-.complaint-card.resolved {
-  border-left-color: #27ae60;
+.complaint-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-4);
 }
 
-.complaint-card h3 {
-  color: #2c3e50;
-  margin: 0 0 0.5rem 0;
+.complaint-title-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
 }
 
-.complaint-card p {
-  margin: 0.25rem 0;
-  color: #34495e;
+.complaint-issue {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--gray-900);
+  margin: 0;
 }
 
-.complaint-card .status {
-  font-weight: bold;
-  color: #f39c12;
-  margin-top: 0.5rem;
+.priority-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: var(--radius-md);
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  width: fit-content;
 }
 
-.complaint-card.resolved .status {
-  color: #27ae60;
+.priority-badge.high {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.priority-badge.medium {
+  background: #fed7aa;
+  color: #92400e;
+}
+
+.priority-badge.low {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.complaint-status-badge {
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.complaint-status-badge.pending {
+  background: #fed7aa;
+  color: #92400e;
+}
+
+.complaint-status-badge.in-progress {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.complaint-status-badge.resolved {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.complaint-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--gray-50);
+  border-radius: var(--radius-lg);
+}
+
+.complaint-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.info-label {
+  font-size: 0.625rem;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.info-value {
+  font-size: var(--text-sm);
+  color: var(--gray-900);
+  font-weight: 500;
+}
+
+.complaint-actions {
+  display: flex;
+  gap: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--gray-200);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hostel-container {
+    padding: var(--space-4);
+  }
+
+  .hostel-header {
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .rooms-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .complaint-header {
+    flex-direction: column;
+  }
+
+  .complaint-actions {
+    flex-direction: column;
+  }
 }

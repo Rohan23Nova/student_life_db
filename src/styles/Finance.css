@@ -1,39 +1,308 @@
 .finance-container {
-  padding: 2rem;
-  max-width: 1200px;
+  padding: var(--space-6);
+  max-width: 1400px;
   margin: 0 auto;
+  animation: fadeIn 0.4s ease-out;
 }
 
-.finance-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-.finance-card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+.finance-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+
+.finance-error {
+  max-width: 600px;
+  margin: var(--space-12) auto;
   text-align: center;
 }
 
-.finance-card h3 {
-  color: #34495e;
-  margin-bottom: 1rem;
+/* Header */
+.finance-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-8);
 }
 
-.amount {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #3498db;
+.finance-title {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: var(--space-2);
+  font-family: var(--font-heading);
 }
 
-.amount.paid {
-  color: #27ae60;
+.finance-subtitle {
+  font-size: var(--text-lg);
+  color: var(--gray-600);
 }
 
-.amount.pending {
-  color: #e74c3c;
+/* Summary Cards */
+.finance-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-6);
+  margin-bottom: var(--space-8);
 }
+
+.finance-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-6) !important;
+  border-left: 4px solid transparent;
+  transition: all var(--transition-base);
+}
+
+.finance-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.finance-card.total { border-left-color: var(--primary-600); }
+.finance-card.paid { border-left-color: var(--success); }
+.finance-card.outstanding { border-left-color: var(--error); }
+.finance-card.scholarship { border-left-color: var(--accent-600); }
+
+.finance-card-icon {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  border-radius: var(--radius-lg);
+  background: var(--gray-50);
+  border: 2px solid var(--gray-100);
+}
+
+.finance-card-content {
+  flex: 1;
+  z-index: 1;
+}
+
+.finance-card-label {
+  font-size: var(--text-sm);
+  color: var(--gray-600);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+  margin-bottom: var(--space-2);
+}
+
+.finance-card-value {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--gray-900);
+  font-family: var(--font-heading);
+  margin: 0;
+}
+
+.paid-amount { color: var(--success); }
+.outstanding-amount { color: var(--error); }
+.scholarship-amount { color: var(--accent-600); }
+
+/* Progress Card */
+.progress-card {
+  margin-bottom: var(--space-8);
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 48px;
+  background: var(--gray-100);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--space-4);
+  position: relative;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--success), #34d399);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 var(--space-4);
+  transition: width 0.6s ease;
+  border-radius: var(--radius-lg);
+}
+
+.progress-label {
+  font-weight: 700;
+  color: white;
+  font-size: var(--text-lg);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.progress-details {
+  display: flex;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.progress-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--gray-700);
+  font-weight: 500;
+}
+
+.progress-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-full);
+}
+
+.progress-dot.paid { background: var(--success); }
+.progress-dot.outstanding { background: var(--error); }
+
+/* Transactions */
+.transactions-card {
+  margin-bottom: var(--space-6);
+}
+
+.transactions-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.transaction-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--gray-50);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-fast);
+}
+
+.transaction-item:hover {
+  background: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.transaction-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  border-radius: var(--radius-lg);
+  background: white;
+  border: 2px solid var(--gray-100);
+}
+
+.transaction-icon.payment { background: #fee2e2; }
+.transaction-icon.scholarship { background: #dbeafe; }
+.transaction-icon.refund { background: #d1fae5; }
+
+.transaction-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.transaction-description {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--gray-900);
+  margin: 0 0 var(--space-1) 0;
+}
+
+.transaction-date {
+  font-size: var(--text-sm);
+  color: var(--gray-500);
+  margin: 0;
+}
+
+.transaction-right {
+  text-align: right;
+}
+
+.transaction-amount {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  margin: 0 0 var(--space-1) 0;
+  font-family: var(--font-heading);
+}
+
+.transaction-amount.positive { color: var(--success); }
+.transaction-amount.negative { color: var(--error); }
+
+.transaction-status {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: var(--radius-md);
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.transaction-status.completed {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.transaction-status.pending {
+  background: #fed7aa;
+  color: #92400e;
+}
+
+.transactions-footer {
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--gray-200);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .finance-container {
+    padding: var(--space-4);
+  }
+
+  .finance-header {
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .finance-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .transaction-item {
+    flex-wrap: wrap;
+  }
+
+  .transaction-right {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+.finance-card-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: var(--space-2);
+}
+
+.total-badge { color: var(--primary-600); }
+.paid-badge { color: var(--success); }
+.outstanding-badge { color: var(--error); }
+.scholarship-badge { color: var(--accent-600); }
